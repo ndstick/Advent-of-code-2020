@@ -13,7 +13,7 @@ export namespace Ferry {
     export const Ferry = (): State => ({
         direction: { x: 1, y: 0 }, // East-bound
         position: { x: 0, y: 0 },
-        waypoint: { x: 1, y: 10 } // East 1, North 10
+        waypoint: { x: 10, y: -1 } // East 1, North 10
     })
 
     export const updateFerryState = (state: State, command: Commands.Command): State => {

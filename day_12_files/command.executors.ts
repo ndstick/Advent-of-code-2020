@@ -25,7 +25,7 @@ export namespace CommandExecutors {
         const commandVector = verticalMovementCommandToVector(command);
         return {
             ...state,
-            position: Vectors.plus(state.position, commandVector),
+            waypoint: Vectors.plus(state.waypoint, commandVector),
         };
     };
 
@@ -33,7 +33,7 @@ export namespace CommandExecutors {
         const commandVector = horizontalMovementCommandToVector(command);
         return {
             ...state,
-            position: Vectors.plus(state.position, commandVector),
+            waypoint: Vectors.plus(state.waypoint, commandVector),
         };
     };
 
@@ -41,12 +41,12 @@ export namespace CommandExecutors {
         const degrees = command.type === "L" ? -command.value : command.value;
         return {
             ...state,
-            direction: Vectors.rotate(state.direction, degrees) as UnitVector,
+            waypoint: Vectors.rotate(state.waypoint, degrees),
         };
     };
 
     export const executeForwardMovement: CommandExecutor = (state, command) => {
-        const positionShift = Vectors.scalarMultiply(state.direction, command.value);
+        const positionShift = Vectors.scalarMultiply(state.waypoint, command.value);
         return {
             ...state,
             position: Vectors.plus(state.position, positionShift),
